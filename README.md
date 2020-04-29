@@ -63,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## 关于项目
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![](http://cdn.shiluo.design/walnut.png)
 
 Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使用的人也是寥寥无几。民间也有不少 Bilibili 直播助手工具，但是大部分都是设置繁琐，界面复杂，对新手极不友好。所以我们开发了这个项目，提供精简，高效的直播助手服务。
 
