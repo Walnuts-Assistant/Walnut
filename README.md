@@ -1,11 +1,3 @@
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -14,8 +6,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
-<!-- PROJECT LOGO -->
 <br />
 
 <p align="center">
@@ -42,15 +32,13 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-
 ## 目录
 
 * [关于项目](#关于项目)
-  * [构建时依赖](#built-with)
-* [起步](#getting-started)
-  * [先决条件](#prerequisites)
-  * [安装](#installation)
+  * [构建时依赖](#构建时依赖)
+* [功能列表](#功能列表)
+  * [弹幕、礼物、进场信息显示](#弹幕、礼物、进场信息显示)
+  * [点歌](#点歌)
 * [使用](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
@@ -60,14 +48,13 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
 ## 关于项目
 
 <p align="center">
     <img src="http://cdn.shiluo.design/walnut.png" alt="cover" width="300" height="500">
 </p>
 
-Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使用的人也是寥寥无几。民间也有不少 Bilibili 直播助手工具，但是大部分都是设置繁琐，界面复杂，对新手极不友好。所以我们开发了这个项目，提供精简，高效的直播助手服务。
+Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使用的人也是寥寥无几。民间也有不少 Bilibili 直播助手工具，但是大部分都是设置繁琐，界面复杂，对新手极不友好。所以我们开发了这个项目，提供**精简**，**高效**的直播助手服务。
 
 为什么要使用此工具:
 * **任何人**第一次使用这个工具不需要**任何**繁琐的界面设置，**开箱即用**。
@@ -79,44 +66,30 @@ Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使�
 一些常被使用到的资源会列在”致谢“一栏。
 
 ### 构建时依赖
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+你只需要下载软件的压缩包，解压即可，依赖文件都在目录中。
+* [[LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)]
 
 
 
-<!-- GETTING STARTED -->
-## 起步
+## 功能列表
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### 弹幕、礼物、进场信息显示
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+你在输入房间号后，输入的主界面具有基本功能：**弹幕、礼物、进场显示**。你不需要点击任何按钮，配置任何参数。
+### 点歌
 
-### Installation
+![]()
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
+如图，点击右上角的绿色按钮，输入点歌关键字，就可以使用 **关键字 空格 搜索关键词** 来进行歌曲搜索。比如你把点歌关键字设置为 BGM，接下里观众就可以通过发送弹幕 **BGM beyond 海阔天空** 来进行点歌，期间你还可以随意修改点歌关键字。
 
+> 但是注意：现在点歌关键字只能是英文或者某点标点符号，不支持中文，比如你可以是：**&**，**BGM**。
 
+会从网易云音乐使用你的搜索关键词来进行搜索，这跟你在网易云音乐官方网址里搜索出来的结果是一样的。
+
+软件不会下载这个歌曲，不会占用你的电脑内存。
 
 <!-- USAGE EXAMPLES -->
 ## Usage
