@@ -23,6 +23,7 @@ type ConnectFeedBack struct {
 	_ func(int)  `signal:"sendFansNums"`
 	_ func(bool) `signal:"sendConnInfo"`
 	_ func(int)  `signal:"sendErr"`
+	_ func(string) `signal:"sendInfo"`
 }
 
 //func (m *ConnectFeedBack) init() {
@@ -41,13 +42,22 @@ type ConnectFeedBack struct {
 //}
 
 func (m *ConnectFeedBack) receiveRoomID(roomid int) {
-	ConnectAndServe(roomid)
-	// 给初次登陆的 QML 传递一个返回信息代表连接成功或失败
-	if bilibili.UserClient.IsConnected == false {
-		m.sendErr(-1)
-	} else {
-		m.sendErr(0)
+	c := ConnectAndServe(roomid); switch c {
+	// 发送消息通知 QML 日志情况
+	case 0:
+		m.sendInfo("连接成功")
+	case 1:
+		m.sendInfo("遇到错误！请查看日志文件寻找错误原因并即时告诉我们！")
+	case 2:
+		m.sendInfo("创建日志文件错误，可能是由于权限不足")
 	}
+
+	// 给初次登陆的 QML 传递一个返回信息代表连接成功或失败
+	//if bilibili.UserClient.IsConnected == false {
+	//	m.sendErr(-1)
+	//} else {
+	//	m.sendErr(0)
+	//}
 	m.sendFansNums(GetFansByAPI(roomid))
 
 	// 发送连接是否正常的标志

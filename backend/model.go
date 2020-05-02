@@ -4,6 +4,7 @@ package backend
 
 import (
 	"LiveAssistant/bilibili"
+	"LiveAssistant/log"
 	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/shirou/gopsutil/cpu"
@@ -69,25 +70,43 @@ type LocalInfo struct {
 }
 
 // ConnectAndServe 重新维持客户端连接
-func ConnectAndServe(roomid int) {
+// 1:日志正常打印，通知用户查看日志
+// 2:创建日志文件错误，权限不足，打开文件失败等
+// 3.
+func ConnectAndServe(roomid int) (code int) {
 	key, err := GetAccessKey(int32(roomid))
 	if err != nil {
-		return
+		if log.ChechFileExist() {
+			log.Info("获取连接弹幕服务器所需的 key 失败")
+			return 1
+		} else {
+			return 2
+		}
 	}
 
 	// 获取客户端实例
 	bilibili.UserClient, err = bilibili.CreateClient(int32(roomid))
 	if err != nil || bilibili.UserClient == nil {
-		return
+		if log.ChechFileExist() {
+			log.Info("客户端创建失败")
+			return 1
+		} else {
+			return 2
+		}
 	}
 
 	// 启动客户端
 	err = bilibili.UserClient.Start(key)
 	if err != nil {
 		bilibili.UserClient.IsConnected = false
-		return
+		if log.ChechFileExist() {
+			log.Info("客户端启动失败")
+			return 1
+		} else {
+			return 2
+		}
 	}
-	return
+	return 0
 }
 
 // 获取发送握手包必须的 key
