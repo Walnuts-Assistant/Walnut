@@ -3,6 +3,7 @@ package backend
 import (
 	"LiveAssistant/bilibili"
 	_ "LiveAssistant/bilibili"
+	"LiveAssistant/log"
 	"github.com/go-qamel/qamel"
 	"github.com/tidwall/gjson"
 	"strings"
@@ -19,10 +20,10 @@ type ConnectFeedBack struct {
 	qamel.QmlObject
 
 	// _ func()       `constructor:"init"`
-	_ func(int)  `slot:"receiveRoomID"`
-	_ func(int)  `signal:"sendFansNums"`
-	_ func(bool) `signal:"sendConnInfo"`
-	_ func(int)  `signal:"sendErr"`
+	_ func(int)    `slot:"receiveRoomID"`
+	_ func(int)    `signal:"sendFansNums"`
+	_ func(bool)   `signal:"sendConnInfo"`
+	_ func(int)    `signal:"sendErr"`
 	_ func(string) `signal:"sendInfo"`
 }
 
@@ -42,14 +43,13 @@ type ConnectFeedBack struct {
 //}
 
 func (m *ConnectFeedBack) receiveRoomID(roomid int) {
-	c := ConnectAndServe(roomid); switch c {
-	// 发送消息通知 QML 日志情况
-	case 0:
-		m.sendInfo("连接成功")
-	case 1:
+	if log.CheckFileExist() {
+		m.sendInfo("日志文件打开失败，可能是由于权限不足")
+	}
+
+	if c := ConnectAndServe(roomid); c == 1 {
+		// 发送消息通知 QML 日志情况
 		m.sendInfo("遇到错误！请查看日志文件寻找错误原因并即时告诉我们！")
-	case 2:
-		m.sendInfo("创建日志文件错误，可能是由于权限不足")
 	}
 
 	// 给初次登陆的 QML 传递一个返回信息代表连接成功或失败
@@ -67,7 +67,10 @@ func (m *ConnectFeedBack) receiveRoomID(roomid int) {
 				m.sendConnInfo(true)
 			} else {
 				m.sendConnInfo(false)
-				ConnectAndServe(roomid)
+				if c := ConnectAndServe(roomid); c == 1 {
+					// 发送消息通知 QML 日志情况
+					m.sendInfo("遇到错误！请查看日志文件寻找错误原因并即时告诉我们！")
+				}
 				continue
 			}
 			time.Sleep(time.Second * 3)

@@ -76,35 +76,23 @@ type LocalInfo struct {
 func ConnectAndServe(roomid int) (code int) {
 	key, err := GetAccessKey(int32(roomid))
 	if err != nil {
-		if log.ChechFileExist() {
-			log.Info("获取连接弹幕服务器所需的 key 失败")
-			return 1
-		} else {
-			return 2
-		}
+		log.Info("获取连接弹幕服务器所需的 key 失败")
+		return 1
 	}
 
 	// 获取客户端实例
 	bilibili.UserClient, err = bilibili.CreateClient(int32(roomid))
 	if err != nil || bilibili.UserClient == nil {
-		if log.ChechFileExist() {
-			log.Info("客户端创建失败")
-			return 1
-		} else {
-			return 2
-		}
+		log.Info("客户端创建失败")
+		return 1
 	}
 
 	// 启动客户端
 	err = bilibili.UserClient.Start(key)
 	if err != nil {
 		bilibili.UserClient.IsConnected = false
-		if log.ChechFileExist() {
-			log.Info("客户端启动失败")
-			return 1
-		} else {
-			return 2
-		}
+		log.Info("客户端启动失败")
+		return 1
 	}
 	return 0
 }

@@ -12,7 +12,7 @@ var (
 	logPrefix string
 )
 
-func ChechFileExist() bool {
+func CheckFileExist() bool {
 	f := openLogFile()
 	if f != nil {
 		logger = log.New(f, "", log.LstdFlags)
