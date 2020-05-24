@@ -3,8 +3,8 @@
 package backend
 
 import (
-	"LiveAssistant/bilibili"
 	"LiveAssistant/log"
+	"LiveAssistant/service/bilibili"
 	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/shirou/gopsutil/cpu"

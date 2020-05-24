@@ -1,9 +1,10 @@
 package backend
 
 import (
-	"LiveAssistant/bilibili"
-	_ "LiveAssistant/bilibili"
 	"LiveAssistant/log"
+	"LiveAssistant/service/bilibili"
+	_ "LiveAssistant/service/bilibili"
+	"fmt"
 	"github.com/go-qamel/qamel"
 	"github.com/tidwall/gjson"
 	"strings"
@@ -42,7 +43,9 @@ type ConnectFeedBack struct {
 //	}()
 //}
 
-func (m *ConnectFeedBack) receiveRoomID(roomid int) {
+// receiveRoomInfo 接收选择的直播平台和房间号
+// 0:BiLiBiLi 1:DouYu 2:Huya
+func (m *ConnectFeedBack) receiveRoomInfo(platform,roomid int) {
 	if log.CheckFileExist() {
 		m.sendInfo("日志文件打开失败，可能是由于权限不足")
 	}

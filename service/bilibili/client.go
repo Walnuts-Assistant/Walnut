@@ -100,41 +100,43 @@ func (c *Client) Start(key string) (err error) {
 	}
 
 	// 发送握手包
-	err = c.SendPackage(0, 16, 1, 7, 1, b)
+	err = c.Send(0, 16, 1, 7, 1, b)
 	if err != nil {
 		return
 	}
 
-	go c.ReceiveMsg()
-	go c.HeartBeat()
+	go c.Receive()
+	go c.HeartBeat([]byte("5b6f626a656374204f626a6563745d"))
 
 	return
 }
 
-func (c *Client) SendPackage(packetlen uint32, magic uint16, ver uint16, typeID uint32, param uint32, data []byte) (err error) {
-	packetHead := new(bytes.Buffer)
-
-	if packetlen == 0 {
-		packetlen = uint32(len(data) + 16)
+// BiliBili 客户端的 ListenerSender 接口的 Send 方法实现
+// 需要发送的数据包格式如下：
+// |                      首部 				    	| 实体 |
+// | Len | Magic Number | Version | TypeID | Params | Data |
+// 参数格式仅需要为：
+// Send(magic,ver,typeID,params,data),长度通过 len(data)+16 算出
+func (c *Client) Send(args ...interface{}) (err error) {
+	var pLen uint32
+	data := args[5].([]byte)
+	if args[0] == 0 {
+		pLen = uint32(len(data) + 16)
 	}
-	var pdata = []interface{}{
-		packetlen,
-		magic,
-		ver,
-		typeID,
-		param,
-	}
 
-	// 将包的头部信息以大端序方式写入字节数组
-	for _, v := range pdata {
-		if err = binary.Write(packetHead, binary.BigEndian, v); err != nil {
+	pHead := new(bytes.Buffer)
+
+	// 首先写入计算好的包的大小
+	_ = binary.Write(pHead, binary.BigEndian, pLen)
+	// 依次写入首部的其他信息
+	for _, val := range args[1:5] {
+		if err = binary.Write(pHead, binary.BigEndian, val); err != nil {
 			return
 		}
 	}
 
-	// 将包内数据部分追加到数据包内
-	sendData := append(packetHead.Bytes(), data...)
-
+	// 拼接数据并写入连接对象
+	sendData := append(pHead.Bytes(), data...)
 	if err = c.Conn.WriteMessage(websocket.BinaryMessage, sendData); err != nil {
 		return
 	}
@@ -142,7 +144,7 @@ func (c *Client) SendPackage(packetlen uint32, magic uint16, ver uint16, typeID 
 	return
 }
 
-func (c *Client) ReceiveMsg() {
+func (c *Client) Receive() {
 	for {
 		_, msg, err := c.Conn.ReadMessage()
 		if err != nil || msg == nil {
@@ -189,15 +191,13 @@ func (c *Client) ReceiveMsg() {
 	}
 }
 
-func (c *Client) HeartBeat() {
+func (c *Client) HeartBeat(data []byte) {
 	for {
 		// 根据协议，每半分钟发送一次内容是 两个空对象 的数据包作为心跳包，维持连接
-		obj := []byte("5b6f626a656374204f626a6563745d")
-		if err := c.SendPackage(0, 16, 1, 2, 1, obj); err != nil {
+		if err := c.Send(0, 16, 1, 2, 1, data); err != nil {
 			c.IsConnected = false
 			break
 		}
 		time.Sleep(30 * time.Second)
-
 	}
 }

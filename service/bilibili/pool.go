@@ -13,7 +13,7 @@ type Pool struct {
 
 func NewPool() *Pool {
 	return &Pool{
-		DanMu:        make(chan []byte, 100),
+		DanMu:        make(chan []byte, 80),
 		Gift:         make(chan []byte, 50),
 		WelCome:      make(chan []byte, 10),
 		WelComeGuard: make(chan []byte, 10),
