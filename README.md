@@ -66,12 +66,8 @@ fork 一份到你的本地，新建分支完成修改并 pr 贡献。
 
 ## License
 
-[BSD-3]: https://github.com/Walnuts-Assistant/Walnut/blob/master/LICENSE	"BSD-3"
+[BSD-3](https://github.com/Walnuts-Assistant/Walnut/blob/master/LICENSE)
 
 ## Contact
 
-Email: 
-
-[silo]: silo1999@163.com	"silo"
-
-
+Email: [silo](silo1999@163.com)
