@@ -5,53 +5,37 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-<br />
+<br/>
 
 <p align="center">
   <a href="https://github.com/Walnuts-Assistant/Walnut">
-    <img src="http://cdn.shiluo.design/icon.ico" alt="Logo" width="80" height="80">
+    <img src="https://blogimagee.oss-cn-beijing.aliyuncs.com/images/Walnuts.png" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">Walnut</h3>
 
   <p align="center">
     一款精简、高效、美观的直播助手应用
     <br />
-    <a href="http://walnutdocs.shiluo.design/"><strong>探索文档 »</strong></a>
+    <a href="http://walnutdocs.shiluo.design/"><strong>探索文档/待写 »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">观看演示</a>
+    <a href="https://github.com/othneildrew/Best-README-Template">观看演示/正在上传</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">报告问题</a>
+    <a href="https://github.com/Walnuts-Assistant/Walnut/issues">报告问题</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">寻求特性</a>
+    <a href="https://github.com/Walnuts-Assistant/Walnut/issues">寻求特性</a>
   </p>
+
 
 
 </p>
 
 
 
-## 目录
-
-* [关于项目](#关于项目)
-  * [构建时依赖](#构建时依赖)
-* [功能列表](#功能列表)
-  * [弹幕、礼物、进场信息显示](#弹幕、礼物、进场信息显示)
-  * [点歌](#点歌)
-* [使用](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
-
-
-
 ## 关于项目
 
 <p align="center">
-    <img src="http://cdn.shiluo.design/walnut.png" alt="cover" width="300" height="500">
+    <img src="https://blogimagee.oss-cn-beijing.aliyuncs.com/images/walnut-1.png" alt="cover" width="300" height="500">
 </p>
 
 Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使用的人也是寥寥无几。民间也有不少 Bilibili 直播助手工具，但是大部分都是设置繁琐，界面复杂，对新手极不友好。所以我们开发了这个项目，提供**精简**，**高效**的直播助手服务。
@@ -63,25 +47,21 @@ Bilibili 现在推出了官方的直播助手工具，但是性能堪忧，使�
 
 当然了，因为每个人需求不一致，没有任何一个项目能够满足所有人的需求，因此我们会逐步添加更多的功能、特性到这个项目中来。如果你有任何方面的改进，都可以 fork 这个项目，修改并提交 PR。或者添加我们的联系方式，把你的想法告诉我们，非常欢迎 :)
 
-一些常被使用到的资源会列在”致谢“一栏。
-
 ### 构建时依赖
 你只需要下载软件的压缩包，解压即可，依赖文件都在目录中。
 * [[LAVFilters](https://github.com/Nevcairiel/LAVFilters/releases)]
 
-
-
 ## 功能列表
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+![](https://blogimagee.oss-cn-beijing.aliyuncs.com/images/walnuts-2.png)
 
 ### 弹幕、礼物、进场信息显示
 
 你在输入房间号后，输入的主界面具有基本功能：**弹幕、礼物、进场显示**。你不需要点击任何按钮，配置任何参数。
+
 ### 点歌
 
-![]()
+![](https://blogimagee.oss-cn-beijing.aliyuncs.com/images/walnuts-3.png)
 
 如图，点击右上角的绿色按钮，输入点歌关键字，就可以使用 **关键字 空格 搜索关键词** 来进行歌曲搜索。比如你把点歌关键字设置为 BGM，接下里观众就可以通过发送弹幕 **BGM beyond 海阔天空** 来进行点歌，期间你还可以随意修改点歌关键字。
 
@@ -89,84 +69,23 @@ To get a local copy up and running follow these simple example steps.
 
 会从网易云音乐使用你的搜索关键词来进行搜索，这跟你在网易云音乐官方网址里搜索出来的结果是一样的。
 
-软件不会下载这个歌曲，不会占用你的电脑内存。
+软件不会下载这个歌曲，不会占用你的电脑硬盘空间。
 
-<!-- USAGE EXAMPLES -->
-## Usage
+## 使用
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+下载最新版本，安装后双击 exe 打开即可。
+## 贡献
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+fork 一份到你的本地，新建分支完成修改并 pr 贡献。
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+[BSD-3]: https://github.com/Walnuts-Assistant/Walnut/blob/master/LICENSE
 
-
-
-<!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Email: 
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
+[silo]: silo1999@163.com
 
 
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
