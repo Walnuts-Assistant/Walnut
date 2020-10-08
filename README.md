@@ -1,12 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-<br/>
-
 <p align="center">
   <a href="https://github.com/Walnuts-Assistant/Walnut">
     <img src="https://blogimagee.oss-cn-beijing.aliyuncs.com/images/Walnuts.png" alt="Logo" width="80" height="80">
@@ -25,11 +16,6 @@
     ·
     <a href="https://github.com/Walnuts-Assistant/Walnut/issues">寻求特性</a>
   </p>
-
-
-
-</p>
-
 
 
 ## 关于项目
@@ -80,12 +66,12 @@ fork 一份到你的本地，新建分支完成修改并 pr 贡献。
 
 ## License
 
-[BSD-3]: https://github.com/Walnuts-Assistant/Walnut/blob/master/LICENSE
+[BSD-3]: https://github.com/Walnuts-Assistant/Walnut/blob/master/LICENSE	"BSD-3"
 
 ## Contact
 
 Email: 
 
-[silo]: silo1999@163.com
+[silo]: silo1999@163.com	"silo"
 
 
