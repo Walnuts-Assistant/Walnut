@@ -22,7 +22,7 @@ var
 (
 	json        = jsoniter.ConfigCompatibleWithStandardLibrary
 	keyUrl      = "https://api.live.bilibili.com/room/v1/Danmu/getConf" // params: room_id=xxx&platform=pc&player=web
-	userInfoUrl = "https://api.bilibili.com/x/space/acc/info"           //mid=382297465&jsonp=jsonp
+	userInfoUrl = "https://api.bilibili.com/x/space/acc/info"           // mid=382297465&jsonp=jsonp
 	server      = "39.106.55.151:3000"
 	RoomInfoURI = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom" // params:?room_id=923833
 )

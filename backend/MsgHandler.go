@@ -4,7 +4,6 @@ import (
 	"LiveAssistant/log"
 	"LiveAssistant/service/bilibili"
 	_ "LiveAssistant/service/bilibili"
-	"fmt"
 	"github.com/go-qamel/qamel"
 	"github.com/tidwall/gjson"
 	"strings"
