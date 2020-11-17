@@ -1,4 +1,4 @@
-module LiveAssistant
+module Walnut
 
 go 1.14
 
@@ -10,4 +10,5 @@ require (
 	github.com/json-iterator/go v1.1.9
 	github.com/shirou/gopsutil v2.20.2+incompatible
 	github.com/tidwall/gjson v1.6.0
+	gopkg.in/ini.v1 v1.62.0
 )

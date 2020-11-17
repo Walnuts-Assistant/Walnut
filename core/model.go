@@ -1,10 +1,10 @@
-// 获取各种参数以及一些工具类型的函数
-
 package backend
 
 import (
-	"LiveAssistant/log"
+	//"LiveAssistant/log"
 	"LiveAssistant/service/bilibili"
+	"Walnut/pkg/app/bl"
+	"Walnut/pkg/log"
 	"fmt"
 	"github.com/json-iterator/go"
 	"github.com/shirou/gopsutil/cpu"
@@ -21,9 +21,7 @@ import (
 var
 (
 	json        = jsoniter.ConfigCompatibleWithStandardLibrary
-	keyUrl      = "https://api.live.bilibili.com/room/v1/Danmu/getConf" // params: room_id=xxx&platform=pc&player=web
 	userInfoUrl = "https://api.bilibili.com/x/space/acc/info"           // mid=382297465&jsonp=jsonp
-	server      = "39.106.55.151:3000"
 	RoomInfoURI = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom" // params:?room_id=923833
 )
 
@@ -35,48 +33,14 @@ const (
 	Sailing    = 1 << 3 // 大航海
 )
 
-type UserDanMu struct {
-	Avatar string `json:"avatar"`
-	// 用户头衔
-	Utitle int `json:"utitle"`
-	// 用户等级
-	UserLevel int `json:"user_level"`
-	// 用户牌子
-	MedalName string `json:"medal_name"`
-	// 牌子等级
-	MedalLevel int    `json:"medal_level"`
-	Uname      string `json:"uname"`
-	Text       string `json:"text"`
-}
-
-type UserGift struct {
-	Uname  string `json:"uname"`
-	Avatar string `json:"avatar"`
-	Action string `json:"action"`
-	Gname  string `json:"gname"`
-	Nums   int32  `json:"nums"`
-	Price  int    `json:"price"`
-}
-
-type WelCome struct {
-	Uname string `json:"uname"`
-	Title string `json:"title"`
-}
-
-type LocalInfo struct {
-	MemUsedPercent float64 `json:"mem"`  // 内存使用率
-	CpuUsedPercent float64 `json:"cpu"`  // CPU使用率
-	SendBytes      int64   `json:"send"` // 单位时间发送字节数
-}
-
 // ConnectAndServe 重新维持客户端连接
 // 1:日志正常打印，通知用户查看日志
 // 2:创建日志文件错误，权限不足，打开文件失败等
 // 3.
 func ConnectAndServe(roomid int) (code int) {
-	key, err := GetAccessKey(int32(roomid))
+	key, err := bl.GetAccessKey(int32(roomid))
 	if err != nil {
-		log.Info("获取连接弹幕服务器所需的 key 失败")
+		//log.Info("获取连接弹幕服务器所需的 key 失败")
 		return 1
 	}
 
@@ -97,25 +61,7 @@ func ConnectAndServe(roomid int) (code int) {
 	return 0
 }
 
-// 获取发送握手包必须的 key
-func GetAccessKey(roomid int32) (key string, err error) {
-	u := fmt.Sprintf("%s?room_id=%d&platform=pc&player=web", keyUrl, roomid)
 
-	resp, err := http.Get(u)
-	if err != nil {
-		return
-	}
-
-	rawdata, err := ioutil.ReadAll(resp.Body)
-
-	_ = resp.Body.Close()
-	if err != nil {
-		return
-	}
-	key = gjson.GetBytes(rawdata, "data.token").String()
-
-	return
-}
 
 // GetUserAvatar 获取用户头像
 func GetUserAvatar(userid int32) (ava string, err error) {

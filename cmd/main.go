@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "LiveAssistant/backend"
+	_ "Walnut/core"
 	"os"
 
 	"github.com/go-qamel/qamel"

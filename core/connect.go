@@ -1,9 +1,9 @@
 package backend
 
 import (
-	"LiveAssistant/log"
-	"LiveAssistant/service/bilibili"
-	_ "LiveAssistant/service/bilibili"
+	// "Walnut/log"
+	"Walnut/service/bilibili"
+	_ "Walnut/service/bilibili"
 	"github.com/go-qamel/qamel"
 	"github.com/tidwall/gjson"
 	"strings"
@@ -15,42 +15,27 @@ func init() {
 	RegisterQmlHandleMsg("HandleMsg", 1, 0, "HandleMsg")
 }
 
-// 连接直播间模块定义
+//ConnectFeedBack 连接直播间模块定义
 type ConnectFeedBack struct {
 	qamel.QmlObject
 
-	// _ func()       `constructor:"init"`
-	_ func(int)    `slot:"receiveRoomID"`
+	_ func()       `constructor:"init"`
 	_ func(int)    `signal:"sendFansNums"`
 	_ func(bool)   `signal:"sendConnInfo"`
 	_ func(int)    `signal:"sendErr"`
 	_ func(string) `signal:"sendInfo"`
+
+	_ func(int)    `slot:"receiveRoomID"`
 }
 
-//func (m *ConnectFeedBack) init() {
-//	go func() {
-//		// 3 秒一次更新一次客户端信息
-//		//for {
-//		//	i := GetCompInfo()
-//		//	b, err := json.Marshal(i)
-//		//	if err != nil {
-//		//		continue
-//		//	}
-//		//	m.sendCompInfo(string(b))
-//		//	time.Sleep(3 * time.Second)
-//		//}
-//	}()
-//}
+func (m *ConnectFeedBack) init() {
+	//TODO 初始化日志、配置信息
+}
 
 // receiveRoomInfo 接收选择的直播平台和房间号
-// 0:BiLiBiLi 1:DouYu 2:Huya
-func (m *ConnectFeedBack) receiveRoomInfo(platform,roomid int) {
-	if log.CheckFileExist() {
-		m.sendInfo("日志文件打开失败，可能是由于权限不足")
-	}
-
-	if c := ConnectAndServe(roomid); c == 1 {
-		// 发送消息通知 QML 日志情况
+// 0:BiLiBiLi 1:DouYu 2:Huya 3:...
+func (m *ConnectFeedBack) receiveRoomInfo(platform,roomId int) {
+	if c := ConnectAndServe(roomId); c == 1 {
 		m.sendInfo("遇到错误！请查看日志文件寻找错误原因并即时告诉我们！")
 	}
 
@@ -60,7 +45,7 @@ func (m *ConnectFeedBack) receiveRoomInfo(platform,roomid int) {
 	//} else {
 	//	m.sendErr(0)
 	//}
-	m.sendFansNums(GetFansByAPI(roomid))
+	m.sendFansNums(GetFansByAPI(roomId))
 
 	// 发送连接是否正常的标志
 	go func() {
@@ -69,7 +54,7 @@ func (m *ConnectFeedBack) receiveRoomInfo(platform,roomid int) {
 				m.sendConnInfo(true)
 			} else {
 				m.sendConnInfo(false)
-				if c := ConnectAndServe(roomid); c == 1 {
+				if c := ConnectAndServe(roomId); c == 1 {
 					// 发送消息通知 QML 日志情况
 					m.sendInfo("遇到错误！请查看日志文件寻找错误原因并即时告诉我们！")
 				}

@@ -1,6 +1,7 @@
 package bilibili
 
 import (
+	"Walnut/pkg/app/bl"
 	"bytes"
 	"encoding/binary"
 	"github.com/gorilla/websocket"
@@ -16,6 +17,31 @@ type Client struct {
 	Online      int32           // 用来判断人气是否变动
 	Conn        *websocket.Conn // 连接后的对象
 	IsConnected bool            // 客户端是否连接
+}
+
+func (c *Client) Connect(roomId uint32) error {
+	// panic("implement me")
+}
+
+// 获取一个连接好的客户端实例
+func CreateClient(roomId int32) (c *Client, err error) {
+	c = new(Client)
+
+	realId, err := bl.GetRealRoomID(roomId)
+	if err != nil {
+		return nil, err
+	}
+
+	// 连接弹幕服务器
+	u := url.URL{Scheme: "wss", Host: DanMuServer, Path: "sub"}
+	c.Conn, _, err = websocket.DefaultDialer.Dial(u.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	c.IsConnected = true
+	c.RoomID = int32(realId)
+	return
 }
 
 // HandShakeMsg 定义了握手包的信息格式
@@ -66,27 +92,6 @@ func NewClient() *Client {
 		Conn:        nil,
 		IsConnected: false,
 	}
-}
-
-// 获取一个连接好的客户端实例
-func CreateClient(roomid int32) (c *Client, err error) {
-	c = new(Client)
-
-	realid, err := GetRealRoomID(roomid)
-	if err != nil {
-		return nil, err
-	}
-
-	// 连接弹幕服务器
-	u := url.URL{Scheme: "wss", Host: DanMuServer, Path: "sub"}
-	c.Conn, _, err = websocket.DefaultDialer.Dial(u.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	c.IsConnected = true
-	c.RoomID = int32(realid)
-	return
 }
 
 // 发送握手包并开始监听消息
