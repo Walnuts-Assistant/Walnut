@@ -16,9 +16,9 @@
     ·
     <a href="https://github.com/Walnuts-Assistant/Walnut/issues">寻求特性</a>
   </p>
-
-
 ## 关于项目
+
+>  项目正在重构....
 
 <p align="center">
     <img src="https://blogimagee.oss-cn-beijing.aliyuncs.com/images/walnut-1.png" alt="cover" width="300" height="500">

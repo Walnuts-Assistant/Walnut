@@ -14,12 +14,16 @@ type Provider interface {
 
 type UserDanMu struct {
 	Avatar string `json:"avatar"`
+
 	// 用户头衔
 	Utitle int `json:"utitle"`
+
 	// 用户等级
 	UserLevel int `json:"user_level"`
+
 	// 用户牌子
 	MedalName string `json:"medal_name"`
+
 	// 牌子等级
 	MedalLevel int    `json:"medal_level"`
 	Uname      string `json:"uname"`

@@ -62,7 +62,7 @@ func NewHandShakeMsg(roomid int32) *HandShakeMsg {
 		RoomID:    roomid,
 		Protover:  2,
 		Platform:  "web",
-		Clientver: "1.10.3",
+		Clientver: "2.4.16",
 		Type:      2,
 		Key:       "",
 	}
